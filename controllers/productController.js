@@ -1,10 +1,8 @@
 const productModel = require('../models/productModel')
 
-createProduct = (req, res) => {
-    let title = req.body.title;
-    let description = req.body.description;
-    let price = req.body.price;
-    let supplier = req.body.supplier;
+function createProduct(req) {
+    const productInstance = productModel({title: req.body.title, description: req.body.description, price: Number(req.body.price), supplier: req.body.supplier});
+    return productInstance;
+}
 
-    let product = new productModel(title, description, price, supplier);
-}   
+module.exports = {createProduct};
