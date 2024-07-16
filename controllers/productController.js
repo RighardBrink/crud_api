@@ -5,4 +5,4 @@ function createProduct(req) {
     return productInstance;
 }
 
-module.exports = {createProduct};
+module.exports = {createProduct, productModel};

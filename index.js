@@ -22,11 +22,21 @@ app.get('/', (req, res) => {
 const productController = require('./controllers/productController');
 app.post("/product/addProduct", async (req, res) => {
     try {
-        console.log("hi");
         const newProduct = productController.createProduct(req);
-        console.log(newProduct);
+        let added = await newProduct.save();
+        console.log(added);
         res.send("Success");
     } catch(error) {
         res.send(error);
     }    
+})
+
+app.put("/product/removeProduct", async (req, res) => {
+    try {
+        const deleteRecord = req.body;
+        let removed = await productController.productModel.deleteOne(deleteRecord);
+        res.send(removed);
+    } catch(error) {
+        res.send(error);
+    }
 })
