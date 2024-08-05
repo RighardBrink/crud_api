@@ -22,6 +22,8 @@ app.get('/', (req, res) => {
 const productRoute = require('./routes/productRoute');
 
 //allow express to use functions defined in productRoute.js
+app.get("/product", productRoute.getProduct);
+
 app.post("/product/addProduct", productRoute.addProduct);
 
 app.put("/product/deleteProduct", productRoute.deleteProduct);

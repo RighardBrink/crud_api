@@ -21,26 +21,35 @@ addProduct = async (req, res) => {
 deleteProduct = async (req, res) => {
     try {
         const deleteRecord = req.body;
-        // const removed = await productController.deleteProduct(deleteRecord);
     
         await productController.deleteProduct(deleteRecord)
         .then((deletedDoc) => {
-            console.log(deletedDoc);
-            res.send(deletedDoc);
+            // console.log(deletedDoc);
+            res.send(`Removal of document ${deletedDoc} successful`);
+            // res.json({
+            //     status: "Removal successful",
+            //     document: deletedDoc,
+            //     response: removed
+            // });
         })
         .catch((error) => {
-            console.log(error);
+            // console.log(error);
             res.send(error);
         })
-        
-        // res.json({
-        //     status: "Removal successful",
-        //     document: deleteRecord,
-        //     response: removed
-        // });
     } catch(error) {
         res.send(error);
     }
 }
 
-module.exports = {addProduct, deleteProduct};
+getProduct = async (req, res) => {
+    try {
+        const searchProduct = req.body;
+        const foundProduct = await productController.getProduct(searchProduct);
+
+        res.send(`The following products have been found: \n ${foundProduct}`);
+    } catch(error) {
+        res.send(error);
+    }
+}
+
+module.exports = {addProduct, deleteProduct, getProduct};
