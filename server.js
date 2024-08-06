@@ -24,7 +24,11 @@ const productRoute = require('./routes/productRoute');
 //allow express to use functions defined in productRoute.js
 app.get("/product", productRoute.getProduct);
 
+app.get("/product/:id", productRoute.getProductByID);
+
 app.post("/product/addProduct", productRoute.addProduct);
 
 app.put("/product/deleteProduct", productRoute.deleteProduct);
+
+app.put("product/updateProduct/:id", productRoute.updateProductByID);
 

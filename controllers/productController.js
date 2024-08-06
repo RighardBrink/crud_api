@@ -24,4 +24,14 @@ const getProduct = function (req) {
     return productsFound;
 }
 
-module.exports = {createProduct, deleteProduct, getProduct};
+const getProductByID = function (req) {
+    const productFound = productModel.findById(req);
+    return productFound;
+}
+
+const updateProductByID = function (req) {
+    const updatedProduct = productModel.findByIdAndUpdate(reqID, reqBody);
+    return updatedProduct;
+}
+
+module.exports = {createProduct, deleteProduct, getProduct, getProductByID, updateProductByID};

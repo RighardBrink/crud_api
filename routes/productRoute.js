@@ -41,15 +41,43 @@ deleteProduct = async (req, res) => {
     }
 }
 
-getProduct = async (req, res) => {
+getProduct = async (req, res, error) => {
     try {
         const searchProduct = req.body;
-        const foundProduct = await productController.getProduct(searchProduct);
+        const foundProducts = await productController.getProduct(searchProduct);
 
-        res.send(`The following products have been found: \n ${foundProduct}`);
+        if (foundProducts) {
+            res.status(200).send(`The following products have been found: \n ${foundProducts}`);
+        } else {
+            throw new Error("Something went wrong...");
+        }
+        
+    } catch(error) {
+        res.status(400).send(error);
+    }
+}
+
+getProductByID = async (req, res) => {
+    try {
+        const searchProduct = req.params.id;
+        const foundProduct = await productController.getProductByID(searchProduct);
+
+        res.send(`The following product have been found: \n ${foundProduct}`);
     } catch(error) {
         res.send(error);
     }
 }
 
-module.exports = {addProduct, deleteProduct, getProduct};
+updateProductByID = async (req, res) => {
+    try {
+        const updateProductID = {_id: req.params.id};
+        const updateProductBody = req.body;
+        const options = {new : true};
+        const updatedProduct = await productController.updateProductByID(updateProductID, updateProductBody, options);
+        res.send(`The following product have been found: \n ${updatedProduct}`);
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+module.exports = {addProduct, deleteProduct, getProduct, getProductByID, updateProductByID};
