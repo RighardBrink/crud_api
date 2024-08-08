@@ -29,9 +29,10 @@ const getProductByID = function (req) {
     return productFound;
 }
 
-const updateProductByID = function (req) {
-    const updatedProduct = productModel.findByIdAndUpdate(reqID, reqBody);
-    return updatedProduct;
+const updateProductByID = function (id, newDoc) {
+    const returnDoc = productModel.findByIdAndUpdate(id, newDoc, {new: true});
+    
+    return returnDoc;
 }
 
 module.exports = {createProduct, deleteProduct, getProduct, getProductByID, updateProductByID};

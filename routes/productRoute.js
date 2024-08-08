@@ -62,7 +62,7 @@ getProductByID = async (req, res) => {
         const searchProduct = req.params.id;
         const foundProduct = await productController.getProductByID(searchProduct);
 
-        res.send(`The following product have been found: \n ${foundProduct}`);
+        res.send(`The following product has been found: \n ${foundProduct}`);
     } catch(error) {
         res.send(error);
     }
@@ -70,11 +70,10 @@ getProductByID = async (req, res) => {
 
 updateProductByID = async (req, res) => {
     try {
-        const updateProductID = {_id: req.params.id};
+        const updateProductID = req.params.id;
         const updateProductBody = req.body;
-        const options = {new : true};
-        const updatedProduct = await productController.updateProductByID(updateProductID, updateProductBody, options);
-        res.send(`The following product have been found: \n ${updatedProduct}`);
+        const updatedProduct = await productController.updateProductByID(updateProductID, updateProductBody);
+        res.send(`The following product has been updated: \n ${updatedProduct}`);
     } catch (error) {
         res.send(error);
     }

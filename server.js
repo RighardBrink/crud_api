@@ -30,5 +30,5 @@ app.post("/product/addProduct", productRoute.addProduct);
 
 app.put("/product/deleteProduct", productRoute.deleteProduct);
 
-app.put("product/updateProduct/:id", productRoute.updateProductByID);
+app.post("/product/updateProduct/:id", productRoute.updateProductByID);
 
