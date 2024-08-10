@@ -41,7 +41,22 @@ deleteProduct = async (req, res) => {
     }
 }
 
-getProduct = async (req, res, error) => {
+getAllProducts = async (req, res) => {
+    try {
+        const foundProducts = await productController.getAllProducts();
+
+        if (foundProducts) {
+            res.status(200).send(`The following products have been found: \n ${foundProducts}`);
+        } else {
+            throw new Error("Something went wrong...");
+        }
+        
+    } catch(error) {
+        res.status(400).send(error);
+    }
+}
+
+getProduct = async (req, res) => {
     try {
         const searchProduct = req.body;
         const foundProducts = await productController.getProduct(searchProduct);
@@ -79,4 +94,4 @@ updateProductByID = async (req, res) => {
     }
 }
 
-module.exports = {addProduct, deleteProduct, getProduct, getProductByID, updateProductByID};
+module.exports = {addProduct, deleteProduct, getProduct, getProductByID, updateProductByID, getAllProducts};

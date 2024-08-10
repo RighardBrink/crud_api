@@ -14,14 +14,16 @@ app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 })
 
-app.get('/', (req, res) => {
-    res.send("Hello World");
-})
+// app.get('/', (req, res) => {
+//     res.send("Hello World");
+// })
 
 //require productRoute
 const productRoute = require('./routes/productRoute');
 
 //allow express to use functions defined in productRoute.js
+app.get("/products", productRoute.getAllProducts);
+
 app.get("/product", productRoute.getProduct);
 
 app.get("/product/:id", productRoute.getProductByID);

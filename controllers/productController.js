@@ -19,6 +19,11 @@ const deleteProduct = function (req) {
     });
 }
 
+const getAllProducts = function () {
+    const productsFound = productModel.find({});
+    return productsFound;
+}
+
 const getProduct = function (req) {
     const productsFound = productModel.find(req);
     return productsFound;
@@ -35,4 +40,4 @@ const updateProductByID = function (id, newDoc) {
     return returnDoc;
 }
 
-module.exports = {createProduct, deleteProduct, getProduct, getProductByID, updateProductByID};
+module.exports = {createProduct, deleteProduct, getProduct, getProductByID, updateProductByID, getAllProducts};
