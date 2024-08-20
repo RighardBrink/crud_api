@@ -1,3 +1,5 @@
+//might have to look at https://learn.microsoft.com/en-us/answers/questions/1026379/access-to-fetch-been-blocked-by-cors-policy-react
+
 const db = require('../database/db');
 
 const productController = require('../controllers/productController');
@@ -46,7 +48,8 @@ getAllProducts = async (req, res) => {
         const foundProducts = await productController.getAllProducts();
 
         if (foundProducts) {
-            res.status(200).send(`The following products have been found: \n ${foundProducts}`);
+            //res.setHeader("Access-Control-Allow-Origin", 'http://localhost:5173');
+            res.json(foundProducts);
         } else {
             throw new Error("Something went wrong...");
         }
