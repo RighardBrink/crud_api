@@ -27,7 +27,7 @@ deleteProduct = async (req, res) => {
         await productController.deleteProduct(deleteRecord)
         .then((deletedDoc) => {
             // console.log(deletedDoc);
-            res.send(`Removal of document ${deletedDoc} successful`);
+            res.json(deletedDoc);
             // res.json({
             //     status: "Removal successful",
             //     document: deletedDoc,
