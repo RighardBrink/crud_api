@@ -80,7 +80,7 @@ getProductByID = async (req, res) => {
         const searchProduct = req.params.id;
         const foundProduct = await productController.getProductByID(searchProduct);
 
-        res.send(`The following product has been found: \n ${foundProduct}`);
+        res.send(foundProduct);
     } catch(error) {
         res.send(error);
     }
